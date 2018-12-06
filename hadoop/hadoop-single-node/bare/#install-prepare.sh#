@@ -1,0 +1,18 @@
+#!/bin/bash
+
+
+# NameNode and DataNode deamons
+hadoop/sbin/start-dfs.sh
+
+hadoop/sbin/start-yarn.sh
+
+# test
+hadoop/bin/hdfs dfs -put etc/hadoop input
+
+hadoop/bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.9.1.jar grep input output 'dfs[a-z.]+'
+
+hadoop/bin/yarn jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.9.1.jar pi 16 1000
+
+spark-submit --deploy-mode cluster \
+               --class org.apache.spark.examples.SparkPi \
+               $SPARK_HOME/examples/jars/spark-examples_2.11-2.4.0.jar 10

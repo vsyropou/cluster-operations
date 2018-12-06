@@ -1,0 +1,17 @@
+eval $(docker-machine env manager1)
+docker stop zoomgr1 ; docker rm zoomgr1
+# docker stop manager1 ; docker rm manager1
+
+eval $(docker-machine env manager2)
+docker stop zoomgr2 ; docker rm zoomgr2
+
+
+eval $(docker-machine env minion1)
+docker stop zoomin1 ; docker rm zoommin1
+
+
+eval $(docker-machine env minion2)
+docker stop zoomin2 ; docker rm zoomin2
+
+
+
